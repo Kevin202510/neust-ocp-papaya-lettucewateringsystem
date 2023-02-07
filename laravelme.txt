@@ -1,0 +1,698 @@
+ ---------------------------------------------------------------------------------
+------------------------Innovatech------------------------------------------------
+---------------------------------------------------------------------------------
+Moto: Innovatech is a web and System  Developer with expressive, elegant syntax. 
+	We believe work must be an enjoyable, creative experience to be truly fulfilling.
+	Innovatech attempts to take the pain out of job by easing common tasks used in the majority of the Job Description,
+	such as recording, sourting, filing,  tracking datas.
+
+
+
+Start Project:
+	$ composer create-project --prefer-dist laravel/laravel e-voting-systems
+	$laravel new e-voting-systems
+
+	****note: laravel has faster downloading project template.
+
+---------------------------------------------------------------------------------
+--------------------------Table name: partylist ---------------------------------
+-------------------- Work hard!! for Client Cinch-------------------------------------
+---------------------------------------------------------------------------------
+
+1. Create table
+	$ php artisan make:migration create_partylist_table --create=partylists
+		a. Manualy add Attribute on every migrated table
+-----------------------------------------------
+---------Setup project-------------------------
+-----------------------------------------------
+1. create login: go to your terminal and type: 
+			$ composer require laravel/ui
+			$ php artisan ui vue --auth
+			//css
+			$ npm install
+			$ npm run dev
+			//url: https://www.techiediaries.com/laravel-authentication-tutorial/
+			*** automatic login, Registration and authentication will be included.
+2. Check .env(connection)
+			APP_NAME=e-voting-systems
+			-------
+			DB_DATABASE=evoting
+			DB_USERNAME=root
+			DB_PASSWORD=
+
+3. add to app\Providers\AppServiceProvider.php
+			i. copy this "use Illuminate\Support\Facades\Schema;" and include on the top of the page.
+			ii. look the function boot and paste this "Schema::defaultStringLength(191);" inside. it looks like this.
+
+				public function boot()
+ 
+				{
+  
+    					Schema::defaultStringLength(191);
+   
+			 	}
+ 
+****https://video.search.yahoo.com/search/video?fr=mcafee&p=how%20to%20install%20nmp%20on%20laravel#id=1&vid=f2509d959486fbec6f171e512efcd04a&action=click
+
+--------------------------------------------------------------------------------------
+---------------------Create MVC------------------------------------------------------
+-------------------------------------------------------------------------------------
+
+3. Create controller and model
+	$ php artisan make:controller PartylistController --resource --model=Partylist 
+		Once only 
+		a. Create mysql Database name evoting.
+
+4. Create table on sql
+	$ php artisan migrate
+		a. to check all migration type this in your terminal: php artisan migrate:status
+
+5. Copy and paste this "Route::resource('/partylist', 'PartylistController');" on routes @ web.php
+	a. php artisan route:list [check route available ]
+
+6. Create form Validation
+	$ php artisan make:request partylistValidate
+		public function rules()
+    {
+  
+	      		return [
+            
+				'name' => 'required',
+		        	'members' =>'required'
+ 
+	       		];
+    }
+
+7. Create Viewing form (manually) in this part only fullstack will do.
+		index.blade.php
+	
+
+8. to minimized code [optional|Once |third party| for better results]
+	FYI: run on gitbash only
+	$ composer require "laravelcollective/html":"^6.0.0" 
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+8. $ php artisan make:model Models\Service -mrc
+
+---------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+ a. npm install
+ b. npm run dev[Design manual]
+ c. npm run watch[Design autoamic]
+
+Fyi:
+	never rename or Delete form..
+	***@your own risk
+
+
+-------------------------------------------------------------
+
+----------------------------------------------------------------
+----------php artisan make:seeder FinancialStatements------------
+----------------------------------------------------------------
+
+php artisan migrate:refresh
+php artisan db:seed
+
+composer dump-autoload
+
+php artisan db:seed --class=UsersTableSeeder
+
+
+--------------------------------------------------------------------------
+---------------------- After Clone ---------------------------------------
+--------------------------------------------------------------------------
+$ cp .env.example .env
+$ composer install
+$ php artisan key:generate
+$ php artisan storage:link
+
+
+
+------------------------------------------------------------------
+------------------   Voyager  ------------------------------------
+-------------https://laravelvoyager.com/--------------------------
+------------------------------------------------------------------
+create project :
+		laravel new project.
+
+require voyager:
+	[Go to your project]
+	composer require tcg/voyager
+
+
+Code once :
+	a. Create mysql Database.
+	b. Check .env(connection)
+	c. add to app\Providers\AppServiceProvider.php
+			i. use Illuminate\Support\Facades\Schema;
+			ii.   public function boot()
+ 
+				{
+  
+    					Schema::defaultStringLength(191);
+   
+			 	}
+
+install voyager:
+	choice a. php artisan voyager:install --with-dummy
+	choice b. php artisan voyager:install 
+
+create admin account:
+	choice a. [make your account admin]
+			$ php artisan voyager:admin your@email.com 
+
+	choice b. [create new admin]
+		$ php artisan voyager:admin admin@admin.com --create 
+
+check: 
+	php artisan serve [default: 8000]
+	php artisan serve --port=9000
+
+
+php artisan key:generate
+
+ls
+
+cp .\.env.example .\.env
+cat .env
+
+
+
+-------------------------------------------------------------------------------------
+-----------https://voyager.readme.io/docs/using-custom-http-controllers -------------
+-------------------------------------------------------------------------------------
+
+A. config/voyager.php
+
+		/*
+    |--------------------------------------------------------------------------
+    | Controllers config
+    |--------------------------------------------------------------------------
+    |
+    | Here you can specify voyager controller settings
+    |
+    */
+
+    'controllers' => [
+        'namespace' => 'App\\Http\\Controllers\\Voyager',
+    ],
+
+
+
+ ***then run 
+		
+		$ php artisan voyager:controllers
+
+ voyager will now use the child controllers which will be created at App/Http/Controllers/Voyager
+
+
+
+--------------------------------------------------------------------------
+--------------- to fix broken avatar---------------------------------------
+---------------------------------------------------------------------------
+ $ php artisan config:cache
+
+{
+    "default": "Active",
+    "options": {
+        "1": "Active",
+        "0": "Inactive"
+    }
+}
+
+
+---------------------------------------------------------------------------------------------------------
+------------------------------------------------  Widgets for Laravel   ---------------------------------
+---------------------------------------------------------------------------------------------------------
+****https://github.com/arrilot/laravel-widgets
+1. composer require arrilot/laravel-widgets
+2. php artisan make:widget RecentNews
+
+
+---------------------------------------------------------------------------------------------------------
+-----------------------------------------------  Charts    ----------------------------------------------
+---------------------------------------------------------------------------------------------------------
+https://charts.erik.cat/create_charts.html #charts-api
+
+https://hdtuto.com/article/laravel-56-generate-free-charts-and-graphs-example
+
+https://github.com/ConsoleTVs/Charts
+https://charts.erik.cat/installation.html#service-provider [chart]
+
+1. php artisan vendor:publish --tag=charts_config
+
+add to config.app.php
+  	'providers' => [
+		*******
+	  ConsoleTVs\Charts\ChartsServiceProvider::class,
+		],
+	  'aliases' => [
+		******
+	'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+		]
+
+2. create chart
+	php artisan make:chart DashboardChart Highcharts
+
+
+
+-----------------------------------------------------------------------------------
+---------------Laravel 5.7 Virtual Host--------------------------------------------
+-----------------------------------------------------------------------------------
+	1. go to: C:\xampp\apache\conf\extra
+	2. open httpd-vhosts on notepad.
+	3. insert :
+		<VirtualHost *:80>
+    			DocumentRoot "C:/xampp/htdocs/pos/public"
+    			ServerAdmin KeepSafe.dev.com
+    			<Directory "C:/xampp/htdocs/pos/public">
+        			Options Indexes FollowSymLinks
+        			AllowOverride All
+        			Require all granted
+    			</Directory>
+		</VirtualHost>
+		**** then save.
+	4. open notepad run as Administrator
+	5. click file & open or ctrl+o;
+	6. open link: C:\Windows\System32\drivers\etc
+	7. open: hosts
+	8. put : 127.0.0.1 KeepSafe.dev.com
+
+https://www.tenforums.com/tutorials/6815-set-network-location-private-public-windows-10-a.html
+
+
+//change password
+https://www.youtube.com/watch?v=w312ogCUd00
+
+C:\xampp\mysql\bin\my.ini
+
+[mysqld]
+skip-grant-tables #insirt this.
+port= 3306
+
+----------------------------------------------------------------------------------------------
+-------------------------Create shortcut to open a URL with a specific browser----------------
+---------------------------------------------windows 10---------------------------------------
+----------------------------------------------------------------------------------------------
+1. Right-click a blank area of the desktop and select â€œNewâ€ > â€œShortcutâ€œ.
+2. For the location, type the path to the browser you wish to use followed by the URL you wish to open. 
+
+	For example:
+	.Chrome: â€œC:\Program Files (x86)\Google\Chrome\Application\chrome.exeâ€ KeepSafe.dev.com
+	.IE: â€œC:\Program Files\Internet Explorer\iexplore.exeâ€ KeepSafe.dev.com
+	.Firefox: â€œC:\Program Files (x86)\Mozilla Firefox\firefox.exeâ€ KeepSafe.dev.com
+
+3. Provide the name for the shortcut. You will probably want to use the name of the website in most cases.
+4. Select â€œNextâ€œ.
+5. Select â€œFinishâ€œ.
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+-------------------------------- Ajax jQuery DataTables API for Laravel 4|5 https://yajrabox.com/docs/laravel-da--------------------
+----------------------------------------------------------------------------------------------------------------------------------
+1. $ composer require yajra/laravel-datatables-oracle:"~8.0"
+2. 'providers' => [
+    		...,
+   		 Yajra\DataTables\DataTablesServiceProvider::class,
+	]
+
+	'aliases' => [
+    		...,
+    		'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+	]
+
+3. $ php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
+
+
+
+
+----------------------------------------------------------------------------------------------------
+-----------------------------  Excell import/export maatwebsite.nl    ------------------------------
+-----------------------------------------------------------------------------------------------------
+
+https://docs.laravel-excel.com/3.1/getting-started/installation.html
+https://www.youtube.com/watch?v=dYQKiaHHq7U&feature=share&fbclid=IwAR2vcnQk0xDaMOE0xaZBZSRT8OXjvQkSL5jky7b7fqfKf81bDguAJoAMi6U
+https://laravel-news.com/five-hidden-features-of-the-laravel-excel-package
+1. composer require maatwebsite/excel
+	'providers' => [
+   	 /*
+    	 * Package Service Providers...
+    	 */
+   	 Maatwebsite\Excel\ExcelServiceProvider::class,
+	]
+
+	'aliases' => [
+    	...
+    	'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+	]
+
+2. php artisan make:export UserExport --model=Models/User
+3. php artisan make:import UserImport --model=Models/User
+
+https://www.youtube.com/watch?v=Y3uVVqeZnvU
+
+
+
+
+----------------------------------------------------------------------------
+------------------------ Broadcasting in pusher & Echo----------------------
+----------------------------------------------------------------------------
+1. install the Pusher PHP SDK for Back-end work
+	composer require pusher/pusher-php-server "~3.0"
+
+2. install laravel-echo & pusher-js packages to listen to pusher
+	npm install --save larave-echo pusher-js
+
+npm install --save socket.io-client
+
+http://localhost:8000/laravel-websockets
+
+
+
+-------------------------------------------------------------------------
+-------------------------------- Ioncube ----------------------------------
+-------------------------------------------------------------------------
+movies: https://www.youtube.com/watch?v=y74d8RhuM3M
+link: https://www.ioncube.com/loaders.php
+
+https://blog.ioncube.com/2016/12/19/ioncube-encoding-laravel-project-controllers-models-templates/
+
+https://www.facebook.com/profile.com
+
+
+
+
+----------------------------------------------
+-----------   input / output --------------------
+----------------------------------------------
+
+$filename = 'test.php'; // the file to change
+$search = 'Hi 2'; // the content after which you want to insert new stuff
+$insert = 'Hi 3'; // your new stuff
+
+$replace = $search. "\n". $insert;
+
+file_put_contents($filename, str_replace($search, $replace, file_get_contents($filename)));
+
+//Usage
+File::put($path,$contents);
+//Example
+File::put('web/text/mytextdocument.txt','John Doe');
+
+//Usage
+File::delete(string|array $paths)
+//Example
+File::delete('web/text/mytextdocument.txt');
+
+Ctrl + F5 = clear cach
+
+
+-------------------------------------------------------------------------------------------
+------------------------- master Page ----------------------------------------------------
+------------------------------------------------------------------------------------------
+1. npm install admin-lte@v3.0.0-alpha.2 --save
+2. create layouts/master.blade.php
+3. copy source code of https://adminlte.io/themes/dev/AdminLTE/index.html(right click view page source)
+	a. add <link rel="stylesheet" href="/css/app.css"> (top)
+	b. add <script src="/js/app.js"></script> bottom
+2. resources/lang/sass/app.scss
+	add $ @import '~admin-lte/dist/css/adminlte.css';
+
+
+
+-------------------------------------------------------------------------------------------
+------------------------------- Fontawesome -----------------------------------------------
+-------------------------- https://fontawesome.com/icons?d=gallery ------------------------
+------------------------------------------------------------------------------------------
+1. npm install @fortawesome/fontawesome-free
+2. resources/sass/app.scss
+	add $fa-font-path: "../webfonts";
+
+
+
+--------------------------------------------------------------------------------------------
+---------------------------------  Redis broadcasting  -------------------------------------
+--------------------------------------------------------------------------------------------
+1. redis
+	$ npm install redis --save-dev
+2. ioredis
+	$ npm install ioredis --save-dev
+3. vue-socket.io
+	$ npm install vue-socket.io --save-dev
+4. predis ( https://packagist.org/packages/predis/predis )
+	$ composer require predis/predis
+5. socket.io ( https://www.npmjs.com/package/vue-socket.io )
+	$ npm install vue-socket.io --save
+6. vform
+	$ npm i axios vform
+7.vue-axios
+	$ npm install --save axios vue-axios
+8. vue-router
+	$ npm install --save vue-router
+9. laravel-echo
+	$ npm install -g laravel-echo-server
+
+*** $ npm run dev
+
+
+
+----------------------------------------------------------------------------------------------
+----------------------------- Text Local -----------------------------------------------------
+----------------------------------------------------------------------------------------------
+docu:
+	1. https://www.w3resource.com/laravel/notifications.php
+	2. https://www.youtube.com/watch?v=Os3VP9hIdq0  
+	3. https://www.youtube.com/watch?v=fIMTCxlftwA
+	4. https://www.youtube.com/watch?v=fGFhy0APrLw
+	5. https://www.kannel.org/ (Open Source WAP and SMS gateway)
+	6. https://www.tecmint.com/best-open-source-bulk-sms-gateway-software/
+	7. https://laravel.com/docs/5.8/scheduling ***
+	8. https://forum.playsms.org/t/installing-playsms-on-windows/66 ***
+	9. https://playsms.org/2010/10/21/playsms-in-windows/ ***
+
+	10. https://laracasts.com/series/laravel-from-scratch-2018/episodes/33 ***
+
+
+Send instant sms via Broadband(Smart,Sun,Globe) to send group message for Announcement, Individual number, and Students Grade. 
+For instance, you can import contacts and grades from excel to the system.
+
+Welcome user... to access the system you are required to have an account. 
+Only administrator of the system has the power to create and delete the account. 
+And, any irregularities using the system without prior notice the 
+account will automatically deleted by the system administrator. 
+
+To send a message and student's grade are the followings:
+
+1.Provide username and password (Do not check administrator, you are only the user.)
+
+2.Make sure that the SIM card have enough load (Better to have unlimited text to all network) 
+to send messages and the number you entered is correct because the system cannot guarantee if the 
+message was not sent successfully. It's better to check first to avoid any errors.
+
+3.Plug-in any broadband (Smart, Globe, or Sun) on your laptop/desktop. 
+Wait a few seconds while the port is ready... 
+(Note: do not run the broadband setup because once it happens the port will become not available).
+
+4.In the dropdown menu, select ports if available otherwise close the application and run it again.
+
+5.Once you are connected, 
+you are ready to send messages, 
+send grades, and manage contacts and your account.
+
+6.Note: you cannot receive any incoming text or calls 
+because these systems only allow one way sending SMS and message also include 
+DO NOT REPLY  for those who can receive.
+
+7.Enjoy...
+
+
+
+
+---------------------------------------------------------------------------------------------------------
+--------------------------------------Device manager----------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+1. checks ports (look for the modem stick)
+2. check for baud ()
+
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------- QZ print -------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+https://www.youtube.com/watch?v=5YQIo4Dfpuk
+https://github.com/mike42/escpos-php
+
+********************************
+npm install -g eslint
+
+https://www.neodynamic.com/articles/How-to-print-raw-ESC-POS-commands-from-PHP-directly-to-the-client-printer/
+https://stackoverflow.com/questions/25973046/printing-to-pos-printer-from-php
+
+
+https://www.youtube.com/watch?v=9GRVEdWuxmA
+***java printing
+
+try {
+        // Enter the share name for your USB printer here
+        //$connector = "POS-58";
+        //$connector = new WindowsPrintConnector("POS-58");
+        $connector = new WindowsPrintConnector("smb://yourPrinterIP");
+        /* Print a "Hello world" receipt" */
+        $printer = new Printer($connector);
+        /* Name of shop */
+        $printer->selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->text("POS Mart\n");
+        $printer->selectPrintMode();
+        $printer->text("Today Closing.\n");
+
+        $printer->feed();
+        /* Title of receipt */
+        $printer->setEmphasis(true);
+
+        $printer->feed(2);
+
+        /* Cut the receipt and open the cash drawer */
+        $printer->cut();
+        $printer->pulse();
+        /* Close printer */
+        $printer->close();
+        // echo "Sudah di Print";
+        return true;
+    } catch (Exception $e) {
+ 	$message = "Couldn't print to this printer: " . $e->getMessage() . "\n";
+        return false;
+    }
+
+	***All you need is to add your printer IP to your php printconnector code or if you use usb cable to connect to your printer, you can use your own ip as php printconnector code.
+
+
+###try this code : $connector = new WindowsPrintConnector("smb://computername/Receipt Printer");
+
+------------------------------------------------------------------------------------------------------------
+---------------------------------------- Strat up xammp-----------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+file: https://stackoverflow.com/questions/22033083/xampp-start-automatically-on-windows-7-startup
+1. open the directory where XAMPP is installed. By default it's installed at  C:\xampp
+2. copy xampp-control.exe, the XAMPP Control Panel
+3. Paste it in
+	a. C:\Users\User-Name\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+	b. C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+
+**********
+show hidden folder
+1. Select the Start button, then select Control Panel > Appearance and Personalization.
+2. Select Folder Options, then select the View tab.
+3. Under Advanced settings, select Show hidden files, folders, and drives, and then select OK.
+
+
+
+
+-------------------------------------------------------------------------------------------------------
+----------------------------- Schedulers --------------------------------
+-------------------------------------------------------------------------------------------------------
+
+1. php artisan make:command NotifyGuardians
+2. Test: php artisan (nameOfCOmmand)
+
+
+
+
+---------------------------------------------------------------------------
+-------------------QR code-------------------------------------------------
+---------------------------------------------------------------------------
+1. composer require simplesoftwareio/simple-qrcode
+config/app.php
+'providers' => [
+
+	....
+
+	SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+
+],
+
+'aliases' => [
+
+	....
+
+	'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+
+],
+
+routes/web.php
+
+Route::get('qr-code-g', function () {
+  \QrCode::size(500)
+            ->format('png')
+            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+    
+  return view('qrCode');
+    
+});
+
+
+-----------------------------------------------------------------------------
+------------------------Wifi password ---------------------------------------
+-----------------------------------------------------------------------------
+1. netsh wlan show profile
+2. netsh wlan show profile TP-Link_C544 key=clear
+
+
+----------------------------------------------------------------------------------------------
+------------------------------------ React JS-------------------------------------------------
+----------------------------------------------------------------------------------------------
+1. php artisan preset react
+2. npm run watch
+3. npm install axios --save
+4. 
+
+
+----------------------------------------------------------------------------------------------
+------------------------------------ Static IP address----------------------------------------
+----------------------------------------------------------------------------------------------
+1.control panel
+2.network and internet
+3.networkand sharing center
+4.change adapter ssettings
+5.Rigth click ethernet select properties
+6.click internet protocol version 4(tcp/IPv4)
+7.click properties
+8.ip address 192.168.0.220
+click subnet
+cmd run as admin type ipconfig /all check default gateway
+default getway must be match in ip address first 3 192.168.0.1
+9.preferred DNS server same to default getway 192.168.0.1
+alternate DNS server 8.8.8.8
+
+
+
+-------------------------------------------------------------------------------------------------
+----------------------------------  Distributed Database  ---------------------------------------
+-------------------------------------------------------------------------------------------------
+
+https://www.tutorialspoint.com/distributed_dbms/distributed_dbms_pdf_version.htm
+
+
+
+
+
+  @forelse($product->vendors->suppliers as $item)
+  @empty
+  @endforelse
+
+
+--------------------------------------------------------------------------------------------------------------------
+----------------------------------------------Sweet Alert for laravel 6.0-------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+a. https://sweetalert2.github.io/#download
+
+b. https://github.com/uxweb/sweet-alert (activate on laravel 6.0)
+
+1. composer require uxweb/sweet-alert
+2. npm install sweetalert@^2.0 --save-dev
+3. 
