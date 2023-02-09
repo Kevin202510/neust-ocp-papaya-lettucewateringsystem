@@ -44,6 +44,12 @@ Route::prefix('/carbondioxides')->group(function()
     Route::get('/getNewVal', 'App\Http\Controllers\CarbondioxideController@index2');
 });
 
+Route::prefix('/waterqualities')->group(function() 
+{
+    Route::get('/', 'App\Http\Controllers\WaterqualityController@index');
+    Route::get('/getNewVal', 'App\Http\Controllers\WaterqualityController@index2');
+});
+
 Route::prefix('/waterlevels')->group(function() 
 {
     Route::get('/', 'App\Http\Controllers\WaterlevelController@index');

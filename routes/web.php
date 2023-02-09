@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/temperatures', function () { return view('monitoringlogs.temperatures.index'); })->name('Temperature')->middleware('auth');
 Route::get('/humidities', function () { return view('monitoringlogs.humidities.index'); })->name('Humidity')->middleware('auth');
 Route::get('/lights', function () { return view('monitoringlogs.lights.index'); })->name('Light')->middleware('auth');
-Route::get('/carbondioxides', function () { return view('monitoringlogs.carbondioxides.index'); })->name('CarbonDioxide')->middleware('auth');
+Route::get('/waterqualities', function () { return view('monitoringlogs.waterquality.index'); })->name('Water Quality')->middleware('auth');
 Route::get('/waterlevels', function () { return view('monitoringlogs.waterlevels.index'); })->name('Water Levels')->middleware('auth');
 Route::get('/users', function () { return view('management.users.index'); })->name('Users')->middleware('auth');
 Route::get('/sensorsconfigurations', function () { return view('sensorconfiguration.index'); })->name('Sensors Configuration')->middleware('auth');

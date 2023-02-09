@@ -16,18 +16,13 @@
     </a>
 </li>
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('CarbonDioxide') }}">
-        <i class="fas fa-sensor-smoke"></i><span>Carbon Dioxide</span>
+    <a class="nav-link" href="{{ route('Water Quality') }}">
+        <i class="fas fa-sprinkler"></i><span>Water Quality</span>
     </a>
 </li>
 <li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('Water Levels') }}">
         <i class="fas fa-sprinkler"></i><span>Water Level</span>
-    </a>
-</li>
-<li class="side-menus {{ Request::is('*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('Light') }}">
-        <i class="fas fa-lightbulb-on"></i><span>Lights</span>
     </a>
 </li>
 <li class="menu-header">Sensor Configuration</li>
